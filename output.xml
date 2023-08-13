@@ -1,0 +1,1061 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<robot generator="Robot 6.1.1 (Python 3.10.0 on darwin)" generated="20230813 22:25:49.301" rpa="false" schemaversion="4">
+<suite id="s1" name="Tests" source="/Users/700da/Desktop/APITestingFW/tests">
+<suite id="s1-s1" name="DiscoDemo" source="/Users/700da/Desktop/APITestingFW/tests/DiscoDemo.robot">
+<test id="s1-s1-t1" name="Test it works" line="6">
+<kw name="Create Session" library="RequestsLibrary" type="SETUP">
+<arg>alias=session</arg>
+<arg>url=https://cpib-integration.apps.fr01.paas.tech.orange/productManagement/v1</arg>
+<arg>verify=False</arg>
+<doc>Create Session: create a HTTP session to a server</doc>
+<msg timestamp="20230813 22:25:49.406" level="INFO">Creating Session using : alias=session, url=https://cpib-integration.apps.fr01.paas.tech.orange/productManagement/v1, headers={},                     cookies={}, auth=None, timeout=None, proxies=None, verify=False,                     debug=0 </msg>
+<status status="PASS" starttime="20230813 22:25:49.406" endtime="20230813 22:25:49.406"/>
+</kw>
+<kw name="Generate Random String" library="String">
+<var>${random_value}</var>
+<arg>2</arg>
+<arg>123456789</arg>
+<doc>Generates a string with a desired ``length`` from the given ``chars``.</doc>
+<msg timestamp="20230813 22:25:49.407" level="INFO">${random_value} = 15</msg>
+<status status="PASS" starttime="20230813 22:25:49.406" endtime="20230813 22:25:49.407"/>
+</kw>
+<kw name="Generate Random String" library="String">
+<var>${p_ordr_id}</var>
+<arg>5</arg>
+<arg>1234567890</arg>
+<doc>Generates a string with a desired ``length`` from the given ``chars``.</doc>
+<msg timestamp="20230813 22:25:49.407" level="INFO">${p_ordr_id} = 78274</msg>
+<status status="PASS" starttime="20230813 22:25:49.407" endtime="20230813 22:25:49.407"/>
+</kw>
+<kw name="Api call" library="APICallLib">
+<var>${resp}</var>
+<arg>Disco.CreateProduct</arg>
+<arg>random_value=${random_value}</arg>
+<arg>product_order_id=${p_ordr_id}</arg>
+<kw name="Set Variable" library="BuiltIn">
+<var>${descriptor}</var>
+<arg>${APIs.${apiname}}</arg>
+<doc>Returns the given values which can then be assigned to a variables.</doc>
+<msg timestamp="20230813 22:25:49.407" level="INFO">${descriptor} = {'action': 'Post', 'bodyTemplate': '/body/product.jinja', 'uri': '/product?post-validate-{{random_value}}', 'headers': '/headers/basic_header.template', 'Responses': {'201': 'templates/response/200.pe...</msg>
+<status status="PASS" starttime="20230813 22:25:49.407" endtime="20230813 22:25:49.407"/>
+</kw>
+<kw name="Get File" library="OperatingSystem">
+<var>${template}</var>
+<arg>./templates/${descriptor.bodyTemplate}</arg>
+<doc>Returns the contents of a specified file.</doc>
+<msg timestamp="20230813 22:25:49.408" level="INFO" html="true">Getting file '&lt;a href="file:///Users/700da/Desktop/APITestingFW/templates/body/product.jinja"&gt;/Users/700da/Desktop/APITestingFW/templates/body/product.jinja&lt;/a&gt;'.</msg>
+<msg timestamp="20230813 22:25:49.408" level="INFO">${template} = [{
+  "isBundle": "true",
+  "status": "Created",
+  "operationalStatus": "Created",
+  "relatedParty": [
+    {
+      "id": "45hj-8888",
+      "name": "Jean",
+      "role": "Customer",
+      "@referredTyp...</msg>
+<status status="PASS" starttime="20230813 22:25:49.407" endtime="20230813 22:25:49.408"/>
+</kw>
+<kw name="Create Dictionary" library="BuiltIn">
+<var>&amp;{reqparams}</var>
+<arg>&amp;{params}</arg>
+<doc>Creates and returns a dictionary based on the given ``items``.</doc>
+<msg timestamp="20230813 22:25:49.408" level="INFO">&amp;{reqparams} = { random_value=15 | product_order_id=78274 }</msg>
+<status status="PASS" starttime="20230813 22:25:49.408" endtime="20230813 22:25:49.408"/>
+</kw>
+<kw name="Render The Template" library="scripts">
+<var>${body}</var>
+<arg>${template}</arg>
+<arg>&amp;{reqparams}</arg>
+<msg timestamp="20230813 22:25:49.410" level="INFO">${body} = [{
+  "isBundle": "true",
+  "status": "Created",
+  "operationalStatus": "Created",
+  "relatedParty": [
+    {
+      "id": "45hj-8888",
+      "name": "Jean",
+      "role": "Customer",
+      "@referredTyp...</msg>
+<status status="PASS" starttime="20230813 22:25:49.408" endtime="20230813 22:25:49.410"/>
+</kw>
+<kw name="Log" library="BuiltIn">
+<arg>${body}</arg>
+<doc>Logs the given message with the given level.</doc>
+<msg timestamp="20230813 22:25:49.411" level="INFO">[{
+  "isBundle": "true",
+  "status": "Created",
+  "operationalStatus": "Created",
+  "relatedParty": [
+    {
+      "id": "45hj-8888",
+      "name": "Jean",
+      "role": "Customer",
+      "@referredType": "Individual"
+    }
+  ],
+  "productOffering": {
+    "id": "5fe032f0-fa01-42ec-afeb-920f74c2eae3",
+    "name": "Mobile Package 1",
+    "@type": "Contract"
+  },
+  "productOrderItem": [
+    {
+      "productOrderId": "78274",
+      "orderItemId": "01",
+      "orderItemAction": "add"
+    }
+  ],
+  "productRelationship": [
+    {
+      "relationshipType": "bundles",
+      "product": {
+        "status": "Created",
+        "operationalStatus": "Created",
+        "relatedParty": [
+          {
+            "id": "45hj-8888",
+            "name": "Jean",
+            "role": "Customer",
+            "@referredType": "Individual"
+          }
+        ],
+        "productOffering": {
+          "id": "cb07fd83-8f41-4cd2-97f5-5989f3ab2bd8",
+          "name": "Mobile Package 1",
+          "@type": "BundledProductOffering"
+        },
+        "productOrderItem": [
+          {
+            "productOrderId": "78274",
+            "orderItemId": "02",
+            "orderItemAction": "add"
+          }
+        ],
+        "productRelationship": [
+          {
+            "relationshipType": "bundles",
+            "product": {
+              "status": "Created",
+              "operationalStatus": "Created",
+              "relatedParty": [
+                {
+                  "id": "45hj-8888",
+                  "name": "Jean",
+                  "role": "Customer",
+                  "@referredType": "Individual"
+                }
+              ],
+              "productPrice": [
+                {
+                  "description": "POP_5Euro",
+                  "name": "POP_5Euro",
+                  "priceType": "NRC",
+                  "price": {
+                    "taxRate": 0,
+                    "dutyFreeAmount": {
+                      "unit": "EUR",
+                      "value": 5
+                    },
+                    "taxIncludedAmount": {
+                      "unit": "EUR",
+                      "value": 5
+                    }
+                  }
+                }
+              ],
+              "productOffering": {
+                "id": "c8846e4c-ecca-40b2-b7de-9c130f4f3466",
+                "name": "Mobile line",
+                "@type": "AtomicProductOffering"
+              },
+              "productOrderItem": [
+                {
+                  "productOrderId": "78274",
+                  "orderItemId": "03",
+                  "orderItemAction": "add"
+                }
+              ],
+              "productRelationship": [
+                {
+                  "relationshipType": "sells",
+                  "product": {
+                    "status": "Created",
+                    "operationalStatus": "Created",
+                    "relatedParty": [
+                      {
+                        "id": "45hj-8888",
+                        "name": "Jean",
+                        "role": "Customer",
+                        "@referredType": "Individual"
+                      }
+                    ],
+                    "isBundle": false,
+                    "@type": "Product",
+                    "productSpecification": {
+                      "id": "c458d968-3718-4754-9408-7bd81526e7b2",
+                      "name": "Mobile line",
+                      "@type": "ProductSpecificationRef"
+                    },
+                    "productOrderItem": [
+                      {
+                        "productOrderId": "78274",
+                        "orderItemId": "07",
+                        "orderItemAction": "add"
+                      }
+                    ]
+                  }
+                }
+              ]
+            }
+          },
+          {
+            "relationshipType": "bundles",
+            "product": {
+              "status": "Created",
+              "operationalStatus": "Created",
+              "relatedParty": [
+                {
+                  "id": "45hj-8888",
+                  "name": "Jean",
+                  "role": "Customer",
+                  "@referredType": "Individual"
+                }
+              ],
+              "productOffering": {
+                "id": "0200ecae-4b1e-41c1-a177-750a2a266f09",
+                "name": "Connectivity",
+                "@type": "AtomicProductOffering"
+              },
+              "productOrderItem": [
+                {
+                  "productOrderId": "78274",
+                  "orderItemId": "04",
+                  "orderItemAction": "add"
+                }
+              ],
+              "productRelationship": [
+                {
+                  "relationshipType": "sells",
+                  "product": {
+                    "status": "Created",
+                    "operationalStatus": "Created",
+                    "isBundle": false,
+                    "@type": "Product",
+                    "productSpecification": {
+                      "id": "5e18402d-c964-4d52-b362-22ef79c27c01",
+                      "name": "Connectivity",
+                      "@type": "ProductSpecificationRef"
+                    },
+                    "productOrderItem": [
+                      {
+                        "productOrderId": "78274",
+                        "orderItemId": "08",
+                        "orderItemAction": "add"
+                      }
+                    ],
+                    "relatedParty": [
+                      {
+                        "id": "45hj-8888",
+                        "name": "Jean",
+                        "role": "Customer",
+                        "@referredType": "Individual"
+                      }
+                    ]
+                  }
+                }
+              ]
+            }
+          },
+          {
+            "relationshipType": "bundles",
+            "product": {
+              "status": "Created",
+              "operationalStatus": "Created",
+              "relatedParty": [
+                {
+                  "id": "45hj-8888",
+                  "name": "Jean",
+                  "role": "Customer",
+                  "@referredType": "Individual"
+                }
+              ],
+              "productPrice": [
+                {
+                  "description": "POP_5Euro",
+                  "name": "POP_5Euro",
+                  "priceType": "NRC",
+                  "price": {
+                    "taxRate": 0,
+                    "dutyFreeAmount": {
+                      "unit": "EUR",
+                      "value": 5
+                    },
+                    "taxIncludedAmount": {
+                      "unit": "EUR",
+                      "value": 5
+                    }
+                  }
+                }
+              ],
+              "productOffering": {
+                "id": "8740a910-38d9-4c6d-8150-8f840c3c37ea",
+                "name": "Time Bundle",
+                "@type": "AtomicProductOffering"
+              },
+              "productOrderItem": [
+                {
+                  "productOrderId": "78274",
+                  "orderItemId": "05",
+                  "orderItemAction": "add"
+                }
+              ],
+              "productRelationship": [
+                {
+                  "relationshipType": "sells",
+                  "product": {
+                    "status": "Created",
+                    "operationalStatus": "Created",
+                    "isBundle": false,
+                    "@type": "Product",
+                    "productCharacteristic": [
+                      {
+                        "name": "volume",
+                        "valueType": "string",
+                        "value": "1h"
+                      }
+                    ],
+                    "productSpecification": {
+                      "id": "82f3bab6-63a1-4008-96a3-8d411d0c5b38",
+                      "name": "Time Bundle",
+                      "@type": "ProductSpecificationRef"
+                    },
+                    "productOrderItem": [
+                      {
+                        "productOrderId": "78274",
+                        "orderItemId": "09",
+                        "orderItemAction": "add"
+                      }
+                    ],
+                    "relatedParty": [
+                      {
+                        "id": "45hj-8888",
+                        "name": "Jean",
+                        "role": "Customer",
+                        "@referredType": "Individual"
+                      }
+                    ]
+                  }
+                }
+              ]
+            }
+          },
+          {
+            "relationshipType": "bundles",
+            "product": {
+              "status": "Created",
+              "operationalStatus": "Created",
+              "relatedParty": [
+                {
+                  "id": "45hj-8888",
+                  "name": "Jean",
+                  "role": "Customer",
+                  "@referredType": "Individual"
+                }
+              ],
+              "productOffering": {
+                "id": "a52ed0ff-e1a1-45de-822a-9db878b0e4fc",
+                "name": "Sim Card",
+                "@type": "AtomicProductOffering"
+              },
+              "productOrderItem": [
+                {
+                  "productOrderId": "78274",
+                  "orderItemId": "06",
+                  "orderItemAction": "add"
+                }
+              ],
+              "productRelationship": [
+                {
+                  "relationshipType": "sells",
+                  "product": {
+                    "status": "Created",
+                    "operationalStatus": "Created",
+                    "isBundle": false,
+                    "@type": "Product",
+                    "productSpecification": {
+                      "id": "df32402e-ceb9-4467-aafd-fec0bbff3124",
+                      "name": "SIM CARD",
+                      "@type": "ProductSpecificationRef"
+                    },
+                    "productOrderItem": [
+                      {
+                        "productOrderId": "78274",
+                        "orderItemId": "10",
+                        "orderItemAction": "add"
+                      }
+                    ],
+                    "relatedParty": [
+                      {
+                        "id": "45hj-8888",
+                        "name": "Jean",
+                        "role": "Customer",
+                        "@referredType": "Individual"
+                      }
+                    ]
+                  }
+                }
+              ]
+            }
+          }
+        ]
+      }
+    }
+  ]
+}]</msg>
+<status status="PASS" starttime="20230813 22:25:49.411" endtime="20230813 22:25:49.411"/>
+</kw>
+<kw name="Get File" library="OperatingSystem">
+<var>${headers}</var>
+<arg>./templates/${descriptor.headers}</arg>
+<doc>Returns the contents of a specified file.</doc>
+<msg timestamp="20230813 22:25:49.411" level="INFO" html="true">Getting file '&lt;a href="file:///Users/700da/Desktop/APITestingFW/templates/headers/basic_header.template"&gt;/Users/700da/Desktop/APITestingFW/templates/headers/basic_header.template&lt;/a&gt;'.</msg>
+<msg timestamp="20230813 22:25:49.411" level="INFO">${headers} = {
+    "accept":  "*/*",
+   "Content-Type": "application/json",
+   "Accept-Encoding": "gzip, deflate, br",
+    "Connection": "keep-alive"
+}
+</msg>
+<status status="PASS" starttime="20230813 22:25:49.411" endtime="20230813 22:25:49.411"/>
+</kw>
+<kw name="Render The Template" library="scripts">
+<var>${reqheaders}</var>
+<arg>${headers}</arg>
+<arg>&amp;{reqparams}</arg>
+<msg timestamp="20230813 22:25:49.412" level="INFO">${reqheaders} = {
+    "accept":  "*/*",
+   "Content-Type": "application/json",
+   "Accept-Encoding": "gzip, deflate, br",
+    "Connection": "keep-alive"
+}</msg>
+<status status="PASS" starttime="20230813 22:25:49.411" endtime="20230813 22:25:49.412"/>
+</kw>
+<kw name="Str To Json" library="scripts">
+<var>${reqheaders}</var>
+<arg>${reqheaders}</arg>
+<msg timestamp="20230813 22:25:49.412" level="INFO">${reqheaders} = {'accept': '*/*', 'Content-Type': 'application/json', 'Accept-Encoding': 'gzip, deflate, br', 'Connection': 'keep-alive'}</msg>
+<status status="PASS" starttime="20230813 22:25:49.412" endtime="20230813 22:25:49.412"/>
+</kw>
+<kw name="Set Variable" library="BuiltIn">
+<var>${uri}</var>
+<arg>${descriptor.uri}</arg>
+<doc>Returns the given values which can then be assigned to a variables.</doc>
+<msg timestamp="20230813 22:25:49.412" level="INFO">${uri} = /product?post-validate-{{random_value}}</msg>
+<status status="PASS" starttime="20230813 22:25:49.412" endtime="20230813 22:25:49.412"/>
+</kw>
+<kw name="Render The Template" library="scripts">
+<var>${uri}</var>
+<arg>${uri}</arg>
+<arg>&amp;{reqparams}</arg>
+<msg timestamp="20230813 22:25:49.413" level="INFO">${uri} = /product?post-validate-15</msg>
+<status status="PASS" starttime="20230813 22:25:49.412" endtime="20230813 22:25:49.413"/>
+</kw>
+<kw name="Convert To Lower Case" library="String">
+<var>${action}</var>
+<arg>${descriptor.action}</arg>
+<doc>Converts string to lower case.</doc>
+<msg timestamp="20230813 22:25:49.413" level="INFO">${action} = post</msg>
+<status status="PASS" starttime="20230813 22:25:49.413" endtime="20230813 22:25:49.413"/>
+</kw>
+<kw name="Get Dictionary Keys" library="Collections">
+<var>${keys}</var>
+<arg>${descriptor}</arg>
+<doc>Returns keys of the given ``dictionary`` as a list.</doc>
+<msg timestamp="20230813 22:25:49.413" level="INFO">${keys} = ['Responses', 'action', 'bodyTemplate', 'headers', 'uri']</msg>
+<status status="PASS" starttime="20230813 22:25:49.413" endtime="20230813 22:25:49.413"/>
+</kw>
+<kw name="Get Index From List" library="Collections">
+<var>${found}</var>
+<arg>${keys}</arg>
+<arg>params</arg>
+<doc>Returns the index of the first occurrence of the ``value`` on the list.</doc>
+<msg timestamp="20230813 22:25:49.413" level="INFO">${found} = -1</msg>
+<status status="PASS" starttime="20230813 22:25:49.413" endtime="20230813 22:25:49.413"/>
+</kw>
+<kw name="Log" library="BuiltIn">
+<arg>${found}</arg>
+<doc>Logs the given message with the given level.</doc>
+<msg timestamp="20230813 22:25:49.413" level="INFO">-1</msg>
+<status status="PASS" starttime="20230813 22:25:49.413" endtime="20230813 22:25:49.413"/>
+</kw>
+<kw name="Run Keyword If" library="BuiltIn">
+<arg>${found}&gt;=0</arg>
+<arg>Log</arg>
+<arg>it is there and params= ${descriptor.params}</arg>
+<doc>Runs the given keyword with the given arguments, if ``condition`` is true.</doc>
+<status status="PASS" starttime="20230813 22:25:49.413" endtime="20230813 22:25:49.413"/>
+</kw>
+<kw name="Set Variable" library="BuiltIn">
+<var>${qryparams}</var>
+<arg>${EMPTY}</arg>
+<doc>Returns the given values which can then be assigned to a variables.</doc>
+<msg timestamp="20230813 22:25:49.414" level="INFO">${qryparams} = </msg>
+<status status="PASS" starttime="20230813 22:25:49.413" endtime="20230813 22:25:49.414"/>
+</kw>
+<kw name="Run Keyword If" library="BuiltIn">
+<arg>${found}&gt;=0</arg>
+<arg>Log</arg>
+<arg>${descriptor.params}</arg>
+<doc>Runs the given keyword with the given arguments, if ``condition`` is true.</doc>
+<status status="PASS" starttime="20230813 22:25:49.414" endtime="20230813 22:25:49.414"/>
+</kw>
+<kw name="Run Keyword If" library="BuiltIn">
+<var>${qryparams}</var>
+<arg>${found}&gt;=0</arg>
+<arg>Render the query params</arg>
+<arg>${descriptor.params}</arg>
+<arg>&amp;{reqparams}</arg>
+<doc>Runs the given keyword with the given arguments, if ``condition`` is true.</doc>
+<msg timestamp="20230813 22:25:49.414" level="INFO">${qryparams} = None</msg>
+<status status="PASS" starttime="20230813 22:25:49.414" endtime="20230813 22:25:49.414"/>
+</kw>
+<kw name="Set Variable" library="BuiltIn">
+<var>${files}</var>
+<arg>${EMPTY}</arg>
+<doc>Returns the given values which can then be assigned to a variables.</doc>
+<msg timestamp="20230813 22:25:49.414" level="INFO">${files} = </msg>
+<status status="PASS" starttime="20230813 22:25:49.414" endtime="20230813 22:25:49.414"/>
+</kw>
+<kw name="Get Index From List" library="Collections">
+<var>${filesfound}</var>
+<arg>${keys}</arg>
+<arg>files</arg>
+<doc>Returns the index of the first occurrence of the ``value`` on the list.</doc>
+<msg timestamp="20230813 22:25:49.414" level="INFO">${filesfound} = -1</msg>
+<status status="PASS" starttime="20230813 22:25:49.414" endtime="20230813 22:25:49.414"/>
+</kw>
+<kw name="Run Keyword If" library="BuiltIn">
+<var>&amp;{files}</var>
+<arg>${filesfound}&gt;0</arg>
+<arg>Render file dictionary</arg>
+<arg>${descriptor.files}</arg>
+<arg>&amp;{reqparams}</arg>
+<doc>Runs the given keyword with the given arguments, if ``condition`` is true.</doc>
+<msg timestamp="20230813 22:25:49.415" level="INFO">&amp;{files} = { }</msg>
+<status status="PASS" starttime="20230813 22:25:49.415" endtime="20230813 22:25:49.415"/>
+</kw>
+<kw name="Run Keyword If" library="BuiltIn">
+<var>${response}</var>
+<arg>"${action}"=="post"</arg>
+<arg>POST On Session</arg>
+<arg>session</arg>
+<arg>${uri}</arg>
+<arg>headers=${reqheaders}</arg>
+<arg>data=${body}</arg>
+<arg>files=${files}</arg>
+<arg>ELSE IF</arg>
+<arg>"${action}"=="get"</arg>
+<arg>Get On Session</arg>
+<arg>session</arg>
+<arg>${uri}</arg>
+<arg>headers=${reqheaders}</arg>
+<arg>params=${qryparams}</arg>
+<arg>ELSE IF</arg>
+<arg>"${action}"=="put"</arg>
+<arg>Put On Session</arg>
+<arg>session</arg>
+<arg>${uri}</arg>
+<arg>headers=${reqheaders}</arg>
+<arg>data=${body}</arg>
+<arg>ELSE IF</arg>
+<arg>"${action}"=="delete"</arg>
+<arg>Delete On Session</arg>
+<arg>session</arg>
+<arg>${uri}</arg>
+<arg>headers=${reqheaders}</arg>
+<arg>params=${qryparams}</arg>
+<arg>ELSE IF</arg>
+<arg>"${action}"=="patch"</arg>
+<arg>Patch On Session</arg>
+<arg>session</arg>
+<arg>${uri}</arg>
+<arg>headers=${reqheaders}</arg>
+<arg>data=${body}</arg>
+<doc>Runs the given keyword with the given arguments, if ``condition`` is true.</doc>
+<kw name="POST On Session" library="RequestsLibrary">
+<arg>session</arg>
+<arg>${uri}</arg>
+<arg>headers=${reqheaders}</arg>
+<arg>data=${body}</arg>
+<arg>files=${files}</arg>
+<doc>Sends a POST request on a previously created HTTP Session.</doc>
+<msg timestamp="20230813 22:25:49.420" level="WARN">Retrying (RetryAdapter(total=2, connect=None, read=None, redirect=None, status=None)) after connection broken by 'NameResolutionError("&lt;urllib3.connection.HTTPSConnection object at 0x1072e5c30&gt;: Failed to resolve 'cpib-integration.apps.fr01.paas.tech.orange' ([Errno 8] nodename nor servname provided, or not known)")': /productManagement/v1/product?post-validate-15</msg>
+<msg timestamp="20230813 22:25:49.625" level="WARN">Retrying (RetryAdapter(total=1, connect=None, read=None, redirect=None, status=None)) after connection broken by 'NameResolutionError("&lt;urllib3.connection.HTTPSConnection object at 0x1072e73d0&gt;: Failed to resolve 'cpib-integration.apps.fr01.paas.tech.orange' ([Errno 8] nodename nor servname provided, or not known)")': /productManagement/v1/product?post-validate-15</msg>
+<msg timestamp="20230813 22:25:50.032" level="WARN">Retrying (RetryAdapter(total=0, connect=None, read=None, redirect=None, status=None)) after connection broken by 'NameResolutionError("&lt;urllib3.connection.HTTPSConnection object at 0x1072e7340&gt;: Failed to resolve 'cpib-integration.apps.fr01.paas.tech.orange' ([Errno 8] nodename nor servname provided, or not known)")': /productManagement/v1/product?post-validate-15</msg>
+<msg timestamp="20230813 22:25:50.037" level="FAIL">ConnectionError: HTTPSConnectionPool(host='cpib-integration.apps.fr01.paas.tech.orange', port=443): Max retries exceeded with url: /productManagement/v1/product?post-validate-15 (Caused by NameResolutionError("&lt;urllib3.connection.HTTPSConnection object at 0x1072e7370&gt;: Failed to resolve 'cpib-integration.apps.fr01.paas.tech.orange' ([Errno 8] nodename nor servname provided, or not known)"))</msg>
+<status status="FAIL" starttime="20230813 22:25:49.415" endtime="20230813 22:25:50.043"/>
+</kw>
+<status status="FAIL" starttime="20230813 22:25:49.415" endtime="20230813 22:25:50.043"/>
+</kw>
+<kw name="Convert To Curl" library="scripts">
+<var>${CurlTxt}</var>
+<arg>${response.request}</arg>
+<status status="NOT RUN" starttime="20230813 22:25:50.044" endtime="20230813 22:25:50.044"/>
+</kw>
+<kw name="Log" library="BuiltIn">
+<arg>${CurlTxt}</arg>
+<doc>Logs the given message with the given level.</doc>
+<status status="NOT RUN" starttime="20230813 22:25:50.044" endtime="20230813 22:25:50.044"/>
+</kw>
+<status status="FAIL" starttime="20230813 22:25:49.407" endtime="20230813 22:25:50.044"/>
+</kw>
+<kw name="Log" library="BuiltIn">
+<arg>${resp.json()}</arg>
+<doc>Logs the given message with the given level.</doc>
+<status status="NOT RUN" starttime="20230813 22:25:50.044" endtime="20230813 22:25:50.044"/>
+</kw>
+<kw name="Should Be Equal As Strings" library="BuiltIn">
+<arg>${resp.status_code}</arg>
+<arg>201</arg>
+<doc>Fails if objects are unequal after converting them to strings.</doc>
+<status status="NOT RUN" starttime="20230813 22:25:50.044" endtime="20230813 22:25:50.044"/>
+</kw>
+<tag>DEBUG</tag>
+<tag>test_case_id=1</tag>
+<status status="FAIL" starttime="20230813 22:25:49.406" endtime="20230813 22:25:50.045">ConnectionError: HTTPSConnectionPool(host='cpib-integration.apps.fr01.paas.tech.orange', port=443): Max retries exceeded with url: /productManagement/v1/product?post-validate-15 (Caused by NameResolutionError("&lt;urllib3.connection.HTTPSConnection object at 0x1072e7370&gt;: Failed to resolve 'cpib-integration.apps.fr01.paas.tech.orange' ([Errno 8] nodename nor servname provided, or not known)"))</status>
+</test>
+<doc>Suite description</doc>
+<status status="FAIL" starttime="20230813 22:25:49.310" endtime="20230813 22:25:50.045"/>
+</suite>
+<suite id="s1-s2" name="PetStore" source="/Users/700da/Desktop/APITestingFW/tests/PetStore.robot">
+<test id="s1-s2-t1" name="Test it works" line="6">
+<kw name="Create Session" library="RequestsLibrary" type="SETUP">
+<arg>alias=session</arg>
+<arg>url=https://petstore.swagger.io/v2</arg>
+<arg>verify=True</arg>
+<doc>Create Session: create a HTTP session to a server</doc>
+<msg timestamp="20230813 22:25:50.056" level="INFO">Creating Session using : alias=session, url=https://petstore.swagger.io/v2, headers={},                     cookies={}, auth=None, timeout=None, proxies=None, verify=True,                     debug=0 </msg>
+<status status="PASS" starttime="20230813 22:25:50.056" endtime="20230813 22:25:50.057"/>
+</kw>
+<kw name="Api call" library="APICallLib">
+<var>${resp}</var>
+<arg>Pet.AddPet</arg>
+<arg>id=135</arg>
+<arg>category_name=Cat</arg>
+<arg>pet_name=Selia</arg>
+<kw name="Set Variable" library="BuiltIn">
+<var>${descriptor}</var>
+<arg>${APIs.${apiname}}</arg>
+<doc>Returns the given values which can then be assigned to a variables.</doc>
+<msg timestamp="20230813 22:25:50.058" level="INFO">${descriptor} = {'action': 'Post', 'bodyTemplate': '/body/pet.template', 'uri': '/pet', 'headers': '/headers/basic_header.template', 'Responses': {'200': 'templates/response/200.pet.json', '2001': 'templates/response...</msg>
+<status status="PASS" starttime="20230813 22:25:50.057" endtime="20230813 22:25:50.058"/>
+</kw>
+<kw name="Get File" library="OperatingSystem">
+<var>${template}</var>
+<arg>./templates/${descriptor.bodyTemplate}</arg>
+<doc>Returns the contents of a specified file.</doc>
+<msg timestamp="20230813 22:25:50.059" level="INFO" html="true">Getting file '&lt;a href="file:///Users/700da/Desktop/APITestingFW/templates/body/pet.template"&gt;/Users/700da/Desktop/APITestingFW/templates/body/pet.template&lt;/a&gt;'.</msg>
+<msg timestamp="20230813 22:25:50.059" level="INFO">${template} = {
+  "id": {{id}},
+  "category": {
+    "id": 0,
+    "name": "{{ category_name|default('',true) }}"
+  },
+  "name": "{{pet_name|default('doggie',true)}}",
+  "photoUrls": [
+    "string"
+  ],
+  "tags": [
+ ...</msg>
+<status status="PASS" starttime="20230813 22:25:50.058" endtime="20230813 22:25:50.059"/>
+</kw>
+<kw name="Create Dictionary" library="BuiltIn">
+<var>&amp;{reqparams}</var>
+<arg>&amp;{params}</arg>
+<doc>Creates and returns a dictionary based on the given ``items``.</doc>
+<msg timestamp="20230813 22:25:50.060" level="INFO">&amp;{reqparams} = { id=135 | category_name=Cat | pet_name=Selia }</msg>
+<status status="PASS" starttime="20230813 22:25:50.059" endtime="20230813 22:25:50.060"/>
+</kw>
+<kw name="Render The Template" library="scripts">
+<var>${body}</var>
+<arg>${template}</arg>
+<arg>&amp;{reqparams}</arg>
+<msg timestamp="20230813 22:25:50.063" level="INFO">${body} = {
+  "id": 135,
+  "category": {
+    "id": 0,
+    "name": "Cat"
+  },
+  "name": "Selia",
+  "photoUrls": [
+    "string"
+  ],
+  "tags": [
+    {
+      "id": 0,
+      "name": "string"
+    }
+  ],
+  "status": ...</msg>
+<status status="PASS" starttime="20230813 22:25:50.060" endtime="20230813 22:25:50.063"/>
+</kw>
+<kw name="Log" library="BuiltIn">
+<arg>${body}</arg>
+<doc>Logs the given message with the given level.</doc>
+<msg timestamp="20230813 22:25:50.063" level="INFO">{
+  "id": 135,
+  "category": {
+    "id": 0,
+    "name": "Cat"
+  },
+  "name": "Selia",
+  "photoUrls": [
+    "string"
+  ],
+  "tags": [
+    {
+      "id": 0,
+      "name": "string"
+    }
+  ],
+  "status": "available"
+}</msg>
+<status status="PASS" starttime="20230813 22:25:50.063" endtime="20230813 22:25:50.063"/>
+</kw>
+<kw name="Get File" library="OperatingSystem">
+<var>${headers}</var>
+<arg>./templates/${descriptor.headers}</arg>
+<doc>Returns the contents of a specified file.</doc>
+<msg timestamp="20230813 22:25:50.064" level="INFO" html="true">Getting file '&lt;a href="file:///Users/700da/Desktop/APITestingFW/templates/headers/basic_header.template"&gt;/Users/700da/Desktop/APITestingFW/templates/headers/basic_header.template&lt;/a&gt;'.</msg>
+<msg timestamp="20230813 22:25:50.064" level="INFO">${headers} = {
+    "accept":  "*/*",
+   "Content-Type": "application/json",
+   "Accept-Encoding": "gzip, deflate, br",
+    "Connection": "keep-alive"
+}
+</msg>
+<status status="PASS" starttime="20230813 22:25:50.063" endtime="20230813 22:25:50.064"/>
+</kw>
+<kw name="Render The Template" library="scripts">
+<var>${reqheaders}</var>
+<arg>${headers}</arg>
+<arg>&amp;{reqparams}</arg>
+<msg timestamp="20230813 22:25:50.065" level="INFO">${reqheaders} = {
+    "accept":  "*/*",
+   "Content-Type": "application/json",
+   "Accept-Encoding": "gzip, deflate, br",
+    "Connection": "keep-alive"
+}</msg>
+<status status="PASS" starttime="20230813 22:25:50.064" endtime="20230813 22:25:50.065"/>
+</kw>
+<kw name="Str To Json" library="scripts">
+<var>${reqheaders}</var>
+<arg>${reqheaders}</arg>
+<msg timestamp="20230813 22:25:50.065" level="INFO">${reqheaders} = {'accept': '*/*', 'Content-Type': 'application/json', 'Accept-Encoding': 'gzip, deflate, br', 'Connection': 'keep-alive'}</msg>
+<status status="PASS" starttime="20230813 22:25:50.065" endtime="20230813 22:25:50.065"/>
+</kw>
+<kw name="Set Variable" library="BuiltIn">
+<var>${uri}</var>
+<arg>${descriptor.uri}</arg>
+<doc>Returns the given values which can then be assigned to a variables.</doc>
+<msg timestamp="20230813 22:25:50.065" level="INFO">${uri} = /pet</msg>
+<status status="PASS" starttime="20230813 22:25:50.065" endtime="20230813 22:25:50.065"/>
+</kw>
+<kw name="Render The Template" library="scripts">
+<var>${uri}</var>
+<arg>${uri}</arg>
+<arg>&amp;{reqparams}</arg>
+<msg timestamp="20230813 22:25:50.066" level="INFO">${uri} = /pet</msg>
+<status status="PASS" starttime="20230813 22:25:50.066" endtime="20230813 22:25:50.066"/>
+</kw>
+<kw name="Convert To Lower Case" library="String">
+<var>${action}</var>
+<arg>${descriptor.action}</arg>
+<doc>Converts string to lower case.</doc>
+<msg timestamp="20230813 22:25:50.067" level="INFO">${action} = post</msg>
+<status status="PASS" starttime="20230813 22:25:50.066" endtime="20230813 22:25:50.067"/>
+</kw>
+<kw name="Get Dictionary Keys" library="Collections">
+<var>${keys}</var>
+<arg>${descriptor}</arg>
+<doc>Returns keys of the given ``dictionary`` as a list.</doc>
+<msg timestamp="20230813 22:25:50.067" level="INFO">${keys} = ['Responses', 'action', 'bodyTemplate', 'headers', 'uri']</msg>
+<status status="PASS" starttime="20230813 22:25:50.067" endtime="20230813 22:25:50.067"/>
+</kw>
+<kw name="Get Index From List" library="Collections">
+<var>${found}</var>
+<arg>${keys}</arg>
+<arg>params</arg>
+<doc>Returns the index of the first occurrence of the ``value`` on the list.</doc>
+<msg timestamp="20230813 22:25:50.067" level="INFO">${found} = -1</msg>
+<status status="PASS" starttime="20230813 22:25:50.067" endtime="20230813 22:25:50.067"/>
+</kw>
+<kw name="Log" library="BuiltIn">
+<arg>${found}</arg>
+<doc>Logs the given message with the given level.</doc>
+<msg timestamp="20230813 22:25:50.067" level="INFO">-1</msg>
+<status status="PASS" starttime="20230813 22:25:50.067" endtime="20230813 22:25:50.067"/>
+</kw>
+<kw name="Run Keyword If" library="BuiltIn">
+<arg>${found}&gt;=0</arg>
+<arg>Log</arg>
+<arg>it is there and params= ${descriptor.params}</arg>
+<doc>Runs the given keyword with the given arguments, if ``condition`` is true.</doc>
+<status status="PASS" starttime="20230813 22:25:50.067" endtime="20230813 22:25:50.068"/>
+</kw>
+<kw name="Set Variable" library="BuiltIn">
+<var>${qryparams}</var>
+<arg>${EMPTY}</arg>
+<doc>Returns the given values which can then be assigned to a variables.</doc>
+<msg timestamp="20230813 22:25:50.068" level="INFO">${qryparams} = </msg>
+<status status="PASS" starttime="20230813 22:25:50.068" endtime="20230813 22:25:50.068"/>
+</kw>
+<kw name="Run Keyword If" library="BuiltIn">
+<arg>${found}&gt;=0</arg>
+<arg>Log</arg>
+<arg>${descriptor.params}</arg>
+<doc>Runs the given keyword with the given arguments, if ``condition`` is true.</doc>
+<status status="PASS" starttime="20230813 22:25:50.068" endtime="20230813 22:25:50.068"/>
+</kw>
+<kw name="Run Keyword If" library="BuiltIn">
+<var>${qryparams}</var>
+<arg>${found}&gt;=0</arg>
+<arg>Render the query params</arg>
+<arg>${descriptor.params}</arg>
+<arg>&amp;{reqparams}</arg>
+<doc>Runs the given keyword with the given arguments, if ``condition`` is true.</doc>
+<msg timestamp="20230813 22:25:50.069" level="INFO">${qryparams} = None</msg>
+<status status="PASS" starttime="20230813 22:25:50.068" endtime="20230813 22:25:50.069"/>
+</kw>
+<kw name="Set Variable" library="BuiltIn">
+<var>${files}</var>
+<arg>${EMPTY}</arg>
+<doc>Returns the given values which can then be assigned to a variables.</doc>
+<msg timestamp="20230813 22:25:50.069" level="INFO">${files} = </msg>
+<status status="PASS" starttime="20230813 22:25:50.069" endtime="20230813 22:25:50.069"/>
+</kw>
+<kw name="Get Index From List" library="Collections">
+<var>${filesfound}</var>
+<arg>${keys}</arg>
+<arg>files</arg>
+<doc>Returns the index of the first occurrence of the ``value`` on the list.</doc>
+<msg timestamp="20230813 22:25:50.069" level="INFO">${filesfound} = -1</msg>
+<status status="PASS" starttime="20230813 22:25:50.069" endtime="20230813 22:25:50.069"/>
+</kw>
+<kw name="Run Keyword If" library="BuiltIn">
+<var>&amp;{files}</var>
+<arg>${filesfound}&gt;0</arg>
+<arg>Render file dictionary</arg>
+<arg>${descriptor.files}</arg>
+<arg>&amp;{reqparams}</arg>
+<doc>Runs the given keyword with the given arguments, if ``condition`` is true.</doc>
+<msg timestamp="20230813 22:25:50.070" level="INFO">&amp;{files} = { }</msg>
+<status status="PASS" starttime="20230813 22:25:50.070" endtime="20230813 22:25:50.070"/>
+</kw>
+<kw name="Run Keyword If" library="BuiltIn">
+<var>${response}</var>
+<arg>"${action}"=="post"</arg>
+<arg>POST On Session</arg>
+<arg>session</arg>
+<arg>${uri}</arg>
+<arg>headers=${reqheaders}</arg>
+<arg>data=${body}</arg>
+<arg>files=${files}</arg>
+<arg>ELSE IF</arg>
+<arg>"${action}"=="get"</arg>
+<arg>Get On Session</arg>
+<arg>session</arg>
+<arg>${uri}</arg>
+<arg>headers=${reqheaders}</arg>
+<arg>params=${qryparams}</arg>
+<arg>ELSE IF</arg>
+<arg>"${action}"=="put"</arg>
+<arg>Put On Session</arg>
+<arg>session</arg>
+<arg>${uri}</arg>
+<arg>headers=${reqheaders}</arg>
+<arg>data=${body}</arg>
+<arg>ELSE IF</arg>
+<arg>"${action}"=="delete"</arg>
+<arg>Delete On Session</arg>
+<arg>session</arg>
+<arg>${uri}</arg>
+<arg>headers=${reqheaders}</arg>
+<arg>params=${qryparams}</arg>
+<arg>ELSE IF</arg>
+<arg>"${action}"=="patch"</arg>
+<arg>Patch On Session</arg>
+<arg>session</arg>
+<arg>${uri}</arg>
+<arg>headers=${reqheaders}</arg>
+<arg>data=${body}</arg>
+<doc>Runs the given keyword with the given arguments, if ``condition`` is true.</doc>
+<kw name="POST On Session" library="RequestsLibrary">
+<arg>session</arg>
+<arg>${uri}</arg>
+<arg>headers=${reqheaders}</arg>
+<arg>data=${body}</arg>
+<arg>files=${files}</arg>
+<doc>Sends a POST request on a previously created HTTP Session.</doc>
+<msg timestamp="20230813 22:25:50.688" level="INFO">POST Request : url=https://petstore.swagger.io/v2/pet 
+ path_url=/v2/pet 
+ headers={'User-Agent': 'python-requests/2.31.0', 'Accept-Encoding': 'gzip, deflate, br', 'accept': '*/*', 'Connection': 'keep-alive', 'Content-Type': 'application/json', 'Content-Length': '213'} 
+ body={
+  "id": 135,
+  "category": {
+    "id": 0,
+    "name": "Cat"
+  },
+  "name": "Selia",
+  "photoUrls": [
+    "string"
+  ],
+  "tags": [
+    {
+      "id": 0,
+      "name": "string"
+    }
+  ],
+  "status": "available"
+} 
+ </msg>
+<msg timestamp="20230813 22:25:50.689" level="INFO">POST Response : url=https://petstore.swagger.io/v2/pet 
+ status=200, reason=OK 
+ headers={'Date': 'Sun, 13 Aug 2023 19:27:10 GMT', 'Content-Type': 'application/json', 'Transfer-Encoding': 'chunked', 'Connection': 'keep-alive', 'Access-Control-Allow-Origin': '*', 'Access-Control-Allow-Methods': 'GET, POST, DELETE, PUT', 'Access-Control-Allow-Headers': 'Content-Type, api_key, Authorization', 'Server': 'Jetty(9.2.9.v20150224)'} 
+ body={"id":135,"category":{"id":0,"name":"Cat"},"name":"Selia","photoUrls":["string"],"tags":[{"id":0,"name":"string"}],"status":"available"} 
+ </msg>
+<status status="PASS" starttime="20230813 22:25:50.070" endtime="20230813 22:25:50.689"/>
+</kw>
+<msg timestamp="20230813 22:25:50.689" level="INFO">${response} = &lt;Response [200]&gt;</msg>
+<status status="PASS" starttime="20230813 22:25:50.070" endtime="20230813 22:25:50.689"/>
+</kw>
+<kw name="Convert To Curl" library="scripts">
+<var>${CurlTxt}</var>
+<arg>${response.request}</arg>
+<msg timestamp="20230813 22:25:50.691" level="INFO">curl --location --request POST --header 'Accept-Encoding: gzip, deflate, br' --header 'Connection: keep-alive' --header 'Content-Length: 213' --header 'Content-Type: application/json' --header 'User-Agent: python-requests/2.31.0' --header 'accept: */*' -d '{
+  "id": 135,
+  "category": {
+    "id": 0,
+    "name": "Cat"
+  },
+  "name": "Selia",
+  "photoUrls": [
+    "string"
+  ],
+  "tags": [
+    {
+      "id": 0,
+      "name": "string"
+    }
+  ],
+  "status": "available"
+}' https://petstore.swagger.io/v2/pet</msg>
+<msg timestamp="20230813 22:25:50.691" level="INFO">${CurlTxt} = curl --location --request POST --header 'Accept-Encoding: gzip, deflate, br' --header 'Connection: keep-alive' --header 'Content-Length: 213' --header 'Content-Type: application/json' --header 'User-A...</msg>
+<status status="PASS" starttime="20230813 22:25:50.689" endtime="20230813 22:25:50.692"/>
+</kw>
+<kw name="Log" library="BuiltIn">
+<arg>${CurlTxt}</arg>
+<doc>Logs the given message with the given level.</doc>
+<msg timestamp="20230813 22:25:50.692" level="INFO">curl --location --request POST --header 'Accept-Encoding: gzip, deflate, br' --header 'Connection: keep-alive' --header 'Content-Length: 213' --header 'Content-Type: application/json' --header 'User-Agent: python-requests/2.31.0' --header 'accept: */*' -d '{
+  "id": 135,
+  "category": {
+    "id": 0,
+    "name": "Cat"
+  },
+  "name": "Selia",
+  "photoUrls": [
+    "string"
+  ],
+  "tags": [
+    {
+      "id": 0,
+      "name": "string"
+    }
+  ],
+  "status": "available"
+}' https://petstore.swagger.io/v2/pet</msg>
+<status status="PASS" starttime="20230813 22:25:50.692" endtime="20230813 22:25:50.692"/>
+</kw>
+<msg timestamp="20230813 22:25:50.692" level="INFO">${resp} = &lt;Response [200]&gt;</msg>
+<status status="PASS" starttime="20230813 22:25:50.057" endtime="20230813 22:25:50.692"/>
+</kw>
+<kw name="Log" library="BuiltIn">
+<arg>${resp.json()}</arg>
+<doc>Logs the given message with the given level.</doc>
+<msg timestamp="20230813 22:25:50.694" level="INFO">{'id': 135, 'category': {'id': 0, 'name': 'Cat'}, 'name': 'Selia', 'photoUrls': ['string'], 'tags': [{'id': 0, 'name': 'string'}], 'status': 'available'}</msg>
+<status status="PASS" starttime="20230813 22:25:50.693" endtime="20230813 22:25:50.694"/>
+</kw>
+<kw name="Validate response schema" library="APICallLib">
+<arg>Pet.AddPet</arg>
+<arg>200</arg>
+<arg>${resp}</arg>
+<kw name="Set Variable" library="BuiltIn">
+<var>${descriptor}</var>
+<arg>${APIs.${apiname}}</arg>
+<doc>Returns the given values which can then be assigned to a variables.</doc>
+<msg timestamp="20230813 22:25:50.696" level="INFO">${descriptor} = {'action': 'Post', 'bodyTemplate': '/body/pet.template', 'uri': '/pet', 'headers': '/headers/basic_header.template', 'Responses': {'200': 'templates/response/200.pet.json', '2001': 'templates/response...</msg>
+<status status="PASS" starttime="20230813 22:25:50.694" endtime="20230813 22:25:50.696"/>
+</kw>
+<kw name="Set Variable" library="BuiltIn">
+<var>${expectedresponses}</var>
+<arg>${descriptor.Responses}</arg>
+<doc>Returns the given values which can then be assigned to a variables.</doc>
+<msg timestamp="20230813 22:25:50.697" level="INFO">${expectedresponses} = {'200': 'templates/response/200.pet.json', '2001': 'templates/response/addpet.resp.200.json', '405': 'GenericErrorSchema.template'}</msg>
+<status status="PASS" starttime="20230813 22:25:50.696" endtime="20230813 22:25:50.697"/>
+</kw>
+<kw name="Log Many" library="BuiltIn">
+<arg>${expectedresponses}</arg>
+<doc>Logs the given messages as separate entries using the INFO level.</doc>
+<msg timestamp="20230813 22:25:50.697" level="INFO">{'200': 'templates/response/200.pet.json', '2001': 'templates/response/addpet.resp.200.json', '405': 'GenericErrorSchema.template'}</msg>
+<status status="PASS" starttime="20230813 22:25:50.697" endtime="20230813 22:25:50.697"/>
+</kw>
+<kw name="Set Variable" library="BuiltIn">
+<var>${expectedresponse}</var>
+<arg>${expectedresponses['${code}']}</arg>
+<doc>Returns the given values which can then be assigned to a variables.</doc>
+<msg timestamp="20230813 22:25:50.698" level="INFO">${expectedresponse} = templates/response/200.pet.json</msg>
+<status status="PASS" starttime="20230813 22:25:50.697" endtime="20230813 22:25:50.698"/>
+</kw>
+<kw name="Log Many" library="BuiltIn">
+<arg>${reponse}</arg>
+<doc>Logs the given messages as separate entries using the INFO level.</doc>
+<msg timestamp="20230813 22:25:50.698" level="INFO">&lt;Response [200]&gt;</msg>
+<status status="PASS" starttime="20230813 22:25:50.698" endtime="20230813 22:25:50.698"/>
+</kw>
+<kw name="Validate Json" library="JSONSchemaLibrary">
+<arg>${expectedresponse}</arg>
+<arg>${reponse.json()}</arg>
+<doc>Validates the sample JSON against the given schema.</doc>
+<status status="PASS" starttime="20230813 22:25:50.699" endtime="20230813 22:25:50.708"/>
+</kw>
+<status status="PASS" starttime="20230813 22:25:50.694" endtime="20230813 22:25:50.708"/>
+</kw>
+<tag>DEBUG</tag>
+<status status="PASS" starttime="20230813 22:25:50.056" endtime="20230813 22:25:50.708"/>
+</test>
+<doc>Suite description</doc>
+<status status="PASS" starttime="20230813 22:25:50.046" endtime="20230813 22:25:50.708"/>
+</suite>
+<status status="FAIL" starttime="20230813 22:25:49.302" endtime="20230813 22:25:50.709"/>
+</suite>
+<statistics>
+<total>
+<stat pass="1" fail="1" skip="0">All Tests</stat>
+</total>
+<tag>
+<stat pass="1" fail="1" skip="0">DEBUG</stat>
+<stat pass="0" fail="1" skip="0">test_case_id=1</stat>
+</tag>
+<suite>
+<stat pass="1" fail="1" skip="0" id="s1" name="Tests">Tests</stat>
+<stat pass="0" fail="1" skip="0" id="s1-s1" name="DiscoDemo">Tests.DiscoDemo</stat>
+<stat pass="1" fail="0" skip="0" id="s1-s2" name="PetStore">Tests.PetStore</stat>
+</suite>
+</statistics>
+<errors>
+<msg timestamp="20230813 22:25:49.420" level="WARN">Retrying (RetryAdapter(total=2, connect=None, read=None, redirect=None, status=None)) after connection broken by 'NameResolutionError("&lt;urllib3.connection.HTTPSConnection object at 0x1072e5c30&gt;: Failed to resolve 'cpib-integration.apps.fr01.paas.tech.orange' ([Errno 8] nodename nor servname provided, or not known)")': /productManagement/v1/product?post-validate-15</msg>
+<msg timestamp="20230813 22:25:49.625" level="WARN">Retrying (RetryAdapter(total=1, connect=None, read=None, redirect=None, status=None)) after connection broken by 'NameResolutionError("&lt;urllib3.connection.HTTPSConnection object at 0x1072e73d0&gt;: Failed to resolve 'cpib-integration.apps.fr01.paas.tech.orange' ([Errno 8] nodename nor servname provided, or not known)")': /productManagement/v1/product?post-validate-15</msg>
+<msg timestamp="20230813 22:25:50.032" level="WARN">Retrying (RetryAdapter(total=0, connect=None, read=None, redirect=None, status=None)) after connection broken by 'NameResolutionError("&lt;urllib3.connection.HTTPSConnection object at 0x1072e7340&gt;: Failed to resolve 'cpib-integration.apps.fr01.paas.tech.orange' ([Errno 8] nodename nor servname provided, or not known)")': /productManagement/v1/product?post-validate-15</msg>
+</errors>
+</robot>

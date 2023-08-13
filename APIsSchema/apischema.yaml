@@ -1,0 +1,31 @@
+APIs:
+   Pet:
+      AddPet:
+        action: Post
+        bodyTemplate:  /body/pet.template
+        uri: /pet
+        headers: /headers/basic_header.template
+        Responses:
+             '200':     templates/response/200.pet.json
+             '2001':    templates/response/addpet.resp.200.json
+             '405':     GenericErrorSchema.template
+   User:
+      updateUser:
+         action: put
+         uri: /user/{{username}}
+         bodyTemplate: User.updateUser.template
+         headers: headerTemplate
+         params: paramsTemplate
+         responses:
+            Failed: FailedTemplate
+            Pass: passTemplate
+         
+   Disco:
+      CreateProduct:
+         action:  Post
+         bodyTemplate:  /body/product.jinja
+         uri:  /product?post-validate-{{random_value}}
+         headers:  /headers/basic_header.template
+         Responses:
+               '201': templates/response/200.pet.json
+            

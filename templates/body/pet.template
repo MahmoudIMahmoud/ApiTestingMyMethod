@@ -1,0 +1,18 @@
+{
+  "id": {{id}},
+  "category": {
+    "id": 0,
+    "name": "{{ category_name|default('',true) }}"
+  },
+  "name": "{{pet_name|default('doggie',true)}}",
+  "photoUrls": [
+    "string"
+  ],
+  "tags": [
+    {
+      "id": 0,
+      "name": "string"
+    }
+  ],
+  "status": "available"
+}

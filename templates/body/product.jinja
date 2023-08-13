@@ -1,0 +1,331 @@
+[{
+  "isBundle": "true",
+  "status": "Created",
+  "operationalStatus": "Created",
+  "relatedParty": [
+    {
+      "id": "45hj-8888",
+      "name": "Jean",
+      "role": "Customer",
+      "@referredType": "Individual"
+    }
+  ],
+  "productOffering": {
+    "id": "5fe032f0-fa01-42ec-afeb-920f74c2eae3",
+    "name": "Mobile Package 1",
+    "@type": "Contract"
+  },
+  "productOrderItem": [
+    {
+      "productOrderId": "{{product_order_id}}",
+      "orderItemId": "01",
+      "orderItemAction": "add"
+    }
+  ],
+  "productRelationship": [
+    {
+      "relationshipType": "bundles",
+      "product": {
+        "status": "Created",
+        "operationalStatus": "Created",
+        "relatedParty": [
+          {
+            "id": "45hj-8888",
+            "name": "Jean",
+            "role": "Customer",
+            "@referredType": "Individual"
+          }
+        ],
+        "productOffering": {
+          "id": "cb07fd83-8f41-4cd2-97f5-5989f3ab2bd8",
+          "name": "Mobile Package 1",
+          "@type": "BundledProductOffering"
+        },
+        "productOrderItem": [
+          {
+            "productOrderId": "{{product_order_id}}",
+            "orderItemId": "02",
+            "orderItemAction": "add"
+          }
+        ],
+        "productRelationship": [
+          {
+            "relationshipType": "bundles",
+            "product": {
+              "status": "Created",
+              "operationalStatus": "Created",
+              "relatedParty": [
+                {
+                  "id": "45hj-8888",
+                  "name": "Jean",
+                  "role": "Customer",
+                  "@referredType": "Individual"
+                }
+              ],
+              "productPrice": [
+                {
+                  "description": "POP_5Euro",
+                  "name": "POP_5Euro",
+                  "priceType": "NRC",
+                  "price": {
+                    "taxRate": 0,
+                    "dutyFreeAmount": {
+                      "unit": "EUR",
+                      "value": 5
+                    },
+                    "taxIncludedAmount": {
+                      "unit": "EUR",
+                      "value": 5
+                    }
+                  }
+                }
+              ],
+              "productOffering": {
+                "id": "c8846e4c-ecca-40b2-b7de-9c130f4f3466",
+                "name": "Mobile line",
+                "@type": "AtomicProductOffering"
+              },
+              "productOrderItem": [
+                {
+                  "productOrderId": "{{product_order_id}}",
+                  "orderItemId": "03",
+                  "orderItemAction": "add"
+                }
+              ],
+              "productRelationship": [
+                {
+                  "relationshipType": "sells",
+                  "product": {
+                    "status": "Created",
+                    "operationalStatus": "Created",
+                    "relatedParty": [
+                      {
+                        "id": "45hj-8888",
+                        "name": "Jean",
+                        "role": "Customer",
+                        "@referredType": "Individual"
+                      }
+                    ],
+                    "isBundle": false,
+                    "@type": "Product",
+                    "productSpecification": {
+                      "id": "c458d968-3718-4754-9408-7bd81526e7b2",
+                      "name": "Mobile line",
+                      "@type": "ProductSpecificationRef"
+                    },
+                    "productOrderItem": [
+                      {
+                        "productOrderId": "{{product_order_id}}",
+                        "orderItemId": "07",
+                        "orderItemAction": "add"
+                      }
+                    ]
+                  }
+                }
+              ]
+            }
+          },
+          {
+            "relationshipType": "bundles",
+            "product": {
+              "status": "Created",
+              "operationalStatus": "Created",
+              "relatedParty": [
+                {
+                  "id": "45hj-8888",
+                  "name": "Jean",
+                  "role": "Customer",
+                  "@referredType": "Individual"
+                }
+              ],
+              "productOffering": {
+                "id": "0200ecae-4b1e-41c1-a177-750a2a266f09",
+                "name": "Connectivity",
+                "@type": "AtomicProductOffering"
+              },
+              "productOrderItem": [
+                {
+                  "productOrderId": "{{product_order_id}}",
+                  "orderItemId": "04",
+                  "orderItemAction": "add"
+                }
+              ],
+              "productRelationship": [
+                {
+                  "relationshipType": "sells",
+                  "product": {
+                    "status": "Created",
+                    "operationalStatus": "Created",
+                    "isBundle": false,
+                    "@type": "Product",
+                    "productSpecification": {
+                      "id": "5e18402d-c964-4d52-b362-22ef79c27c01",
+                      "name": "Connectivity",
+                      "@type": "ProductSpecificationRef"
+                    },
+                    "productOrderItem": [
+                      {
+                        "productOrderId": "{{product_order_id}}",
+                        "orderItemId": "08",
+                        "orderItemAction": "add"
+                      }
+                    ],
+                    "relatedParty": [
+                      {
+                        "id": "45hj-8888",
+                        "name": "Jean",
+                        "role": "Customer",
+                        "@referredType": "Individual"
+                      }
+                    ]
+                  }
+                }
+              ]
+            }
+          },
+          {
+            "relationshipType": "bundles",
+            "product": {
+              "status": "Created",
+              "operationalStatus": "Created",
+              "relatedParty": [
+                {
+                  "id": "45hj-8888",
+                  "name": "Jean",
+                  "role": "Customer",
+                  "@referredType": "Individual"
+                }
+              ],
+              "productPrice": [
+                {
+                  "description": "POP_5Euro",
+                  "name": "POP_5Euro",
+                  "priceType": "NRC",
+                  "price": {
+                    "taxRate": 0,
+                    "dutyFreeAmount": {
+                      "unit": "EUR",
+                      "value": 5
+                    },
+                    "taxIncludedAmount": {
+                      "unit": "EUR",
+                      "value": 5
+                    }
+                  }
+                }
+              ],
+              "productOffering": {
+                "id": "8740a910-38d9-4c6d-8150-8f840c3c37ea",
+                "name": "Time Bundle",
+                "@type": "AtomicProductOffering"
+              },
+              "productOrderItem": [
+                {
+                  "productOrderId": "{{product_order_id}}",
+                  "orderItemId": "05",
+                  "orderItemAction": "add"
+                }
+              ],
+              "productRelationship": [
+                {
+                  "relationshipType": "sells",
+                  "product": {
+                    "status": "Created",
+                    "operationalStatus": "Created",
+                    "isBundle": false,
+                    "@type": "Product",
+                    "productCharacteristic": [
+                      {
+                        "name": "volume",
+                        "valueType": "string",
+                        "value": "1h"
+                      }
+                    ],
+                    "productSpecification": {
+                      "id": "82f3bab6-63a1-4008-96a3-8d411d0c5b38",
+                      "name": "Time Bundle",
+                      "@type": "ProductSpecificationRef"
+                    },
+                    "productOrderItem": [
+                      {
+                        "productOrderId": "{{product_order_id}}",
+                        "orderItemId": "09",
+                        "orderItemAction": "add"
+                      }
+                    ],
+                    "relatedParty": [
+                      {
+                        "id": "45hj-8888",
+                        "name": "Jean",
+                        "role": "Customer",
+                        "@referredType": "Individual"
+                      }
+                    ]
+                  }
+                }
+              ]
+            }
+          },
+          {
+            "relationshipType": "bundles",
+            "product": {
+              "status": "Created",
+              "operationalStatus": "Created",
+              "relatedParty": [
+                {
+                  "id": "45hj-8888",
+                  "name": "Jean",
+                  "role": "Customer",
+                  "@referredType": "Individual"
+                }
+              ],
+              "productOffering": {
+                "id": "a52ed0ff-e1a1-45de-822a-9db878b0e4fc",
+                "name": "Sim Card",
+                "@type": "AtomicProductOffering"
+              },
+              "productOrderItem": [
+                {
+                  "productOrderId": "{{product_order_id}}",
+                  "orderItemId": "06",
+                  "orderItemAction": "add"
+                }
+              ],
+              "productRelationship": [
+                {
+                  "relationshipType": "sells",
+                  "product": {
+                    "status": "Created",
+                    "operationalStatus": "Created",
+                    "isBundle": false,
+                    "@type": "Product",
+                    "productSpecification": {
+                      "id": "df32402e-ceb9-4467-aafd-fec0bbff3124",
+                      "name": "SIM CARD",
+                      "@type": "ProductSpecificationRef"
+                    },
+                    "productOrderItem": [
+                      {
+                        "productOrderId": "{{product_order_id}}",
+                        "orderItemId": "10",
+                        "orderItemAction": "add"
+                      }
+                    ],
+                    "relatedParty": [
+                      {
+                        "id": "45hj-8888",
+                        "name": "Jean",
+                        "role": "Customer",
+                        "@referredType": "Individual"
+                      }
+                    ]
+                  }
+                }
+              ]
+            }
+          }
+        ]
+      }
+    }
+  ]
+}]

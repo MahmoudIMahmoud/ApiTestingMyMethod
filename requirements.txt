@@ -1,0 +1,7 @@
+robotframework-jsonschemalibrary
+robotframework-jsonlibrary
+robotframework
+robotframework-requests
+pyyaml
+jinja2
+curlify

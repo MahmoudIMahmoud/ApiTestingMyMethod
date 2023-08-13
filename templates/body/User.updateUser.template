@@ -1,0 +1,10 @@
+{
+  {% if id %}"id": {{id}},{% endif %}
+  {% if username  %}"username": "{{username}}",{% endif %}
+  {% if firstName  %}"firstName": "{{firstName}}",{% endif %}
+  {% if lastName  %}"lastName": "{{lastName}}",{% endif %}
+  {% if email  %}"email": "{{email}}",{% endif %}
+  {% if password  %}"password": "{{password}}",{% endif %}
+  {% if phone  %}"phone": "{{phone}}",{% endif %}
+  {% if userStatus  %}"userStatus": {{userStatus}}{% endif %}
+}
